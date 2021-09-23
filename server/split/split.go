@@ -6,7 +6,7 @@ import (
 )
 
 // https://github.com/mediacloud/sentence-splitter/blob/9af995f451a193898953dfe3926d1beefb45afb6/sentence_splitter/non_breaking_prefixes/en.txt
-var abbrs = []string{
+var _abbrs = []string{
 	"a", "adj", "adm", "adv", "al", "apr", "art", "asst", "aug", "b", "bart", "bldg", "brig", "bros", "c", "capt", "cf",
 	"cmdr", "co", "col", "comdr", "con", "corp", "cpl", "d", "dec", "dr", "drs", "e", "e.g", "ens", "esp", "etc", "f",
 	"feb", "fig", "g", "gen", "gov", "h", "hon", "hosp", "hr", "i", "i.e", "inc", "insp", "j", "jan", "jr", "jul", "jun",
@@ -14,6 +14,13 @@ var abbrs = []string{
 	"nr", "o", "oct", "okt", "op", "ord", "p", "pfc", "ph", "ph.d", "phd", "pp", "prof", "pvt", "q", "r", "rep", "reps",
 	"res", "rev", "rt", "s", "sen", "sens", "sep", "sept", "sfc", "sgt", "sr", "st", "supt", "surg", "t", "u",
 	"u.k", "u.s", "v", "vs", "w", "x", "y", "z",
+}
+var abbrs = map[string]struct{}{}
+
+func init() {
+	for _, abbr := range _abbrs {
+		abbrs[abbr+"."] = struct{}{}
+	}
 }
 
 func Sentences(all string) []string {
@@ -25,12 +32,8 @@ nextWord:
 	for i := 0; i < len(results); i++ {
 		lastRaw := all[results[i][0]:results[i][1]]
 		lastWord := strings.ToLower(strings.TrimSpace(lastRaw))
-
-		for _, abbr := range abbrs {
-			abbr := abbr + "."
-			if lastWord == abbr {
-				continue nextWord
-			}
+		if _, breakIsAbbr := abbrs[lastWord]; breakIsAbbr {
+			continue nextWord
 		}
 
 		currPos := results[i][1]
