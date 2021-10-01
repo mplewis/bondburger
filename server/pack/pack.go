@@ -3,6 +3,7 @@ package pack
 import (
 	"compress/gzip"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -54,6 +55,10 @@ func load(dir string) (films []*t.Film, err error) {
 		})
 	}
 
+	log.Printf("Loaded %d films:\n", len(films))
+	for _, film := range films {
+		fmt.Printf("    %s (%d)\n", film.Title, film.Year)
+	}
 	return films, nil
 }
 
