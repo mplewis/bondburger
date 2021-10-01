@@ -12,3 +12,11 @@ func MustEnv(key string) string {
 	}
 	return val
 }
+
+func MaybeEnv(key string, dfault string) string {
+	val := os.Getenv(key)
+	if val == "" {
+		return dfault
+	}
+	return val
+}
