@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import Question from './Question.vue'
-import { pick, Film, Slug, FilmsBySlug } from '../data/films'
 import { ref, onMounted } from 'vue';
+import { pick, Film, Slug, FilmsBySlug } from '../data/films'
+import { random, randInt } from '../random'
+import Question from './Question.vue'
 
 const choices = 4
 const sentencePadding = 1;
@@ -9,14 +10,6 @@ const sentencePadding = 1;
 var options = ref<FilmsBySlug>({})
 var question = ref<string>("")
 var answer = ref<Slug>("")
-
-function random<T>(items: T[]): T {
-  return items[Math.floor(Math.random() * items.length)]
-}
-
-function randInt(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1)) + min
-}
 
 function buildQuestion(film: Film, padding: number): string {
   const min = padding
