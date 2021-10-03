@@ -1,15 +1,8 @@
 import { randInt } from "../random";
+import { Film, Slug, FilmsBySlug } from "../types";
 
 const filmsDataPath = "films.gz";
 
-export type Film = {
-  title: string;
-  year: string;
-  actor: string;
-  plot: string[];
-};
-export type Slug = string;
-export type FilmsBySlug = { [slug: Slug]: Film };
 type FilmWithSlug = { slug: Slug; film: Film };
 
 var _films: FilmsBySlug = {};
