@@ -215,7 +215,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/devtools-api@npm:^6.0.0-beta.14":
+"@vue/devtools-api@npm:^6.0.0-beta.11, @vue/devtools-api@npm:^6.0.0-beta.14":
   version: 6.0.0-beta.18
   resolution: "@vue/devtools-api@npm:6.0.0-beta.18"
   checksum: aa9e894a7abb3da08264a241f565339bf05a312b8366cf6c8e624b8c6637548dd43ef1ba7f84fea37a1dfd84737e32671d4bae5e1bc6dde75cbaef9f08d2630d
@@ -518,12 +518,15 @@ __metadata:
   dependencies:
     "@vitejs/plugin-vue": ^1.9.2
     bulma: ^0.9.3
+    lodash: ^4.17.21
     sass: ^1.42.1
     typescript: ^4.4.3
     vite: ^2.6.0
     vue: ^3.2.16
     vue-router: 4
     vue-tsc: ^0.3.0
+    vuex: next
+    vuex-typed-modules: ^4.2.1
   languageName: unknown
   linkType: soft
 
@@ -1239,6 +1242,13 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"lodash@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash@npm:4.17.21"
+  checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
+  languageName: node
+  linkType: hard
+
 "lru-cache@npm:^6.0.0":
   version: 6.0.0
   resolution: "lru-cache@npm:6.0.0"
@@ -1948,7 +1958,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-typescript@^4.4.3:
+"typescript@^4.3.5, typescript@^4.4.3":
   version: 4.4.3
   resolution: "typescript@npm:4.4.3"
   bin:
@@ -1958,7 +1968,7 @@ typescript@^4.4.3:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.4.3#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.3.5#~builtin<compat/typescript>, typescript@patch:typescript@^4.4.3#~builtin<compat/typescript>":
   version: 4.4.3
   resolution: "typescript@patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"
   bin:
@@ -2197,6 +2207,22 @@ typescript@^4.4.3:
   languageName: node
   linkType: hard
 
+"vue-demi@npm:^0.10.1":
+  version: 0.10.1
+  resolution: "vue-demi@npm:0.10.1"
+  peerDependencies:
+    "@vue/composition-api": ^1.0.0-rc.1
+    vue: ^2.6.0 || >=3.0.0
+  peerDependenciesMeta:
+    "@vue/composition-api":
+      optional: true
+  bin:
+    vue-demi-fix: bin/vue-demi-fix.js
+    vue-demi-switch: bin/vue-demi-switch.js
+  checksum: c9a77e7c3c55b8cd380c71f18cd27d2a4df058fd3fc6a703db36b3e7f24cf909d6dd7359a168159e2a488ed553a9b3e01779ed346a31441dd78590487dde19bb
+  languageName: node
+  linkType: hard
+
 "vue-router@npm:4":
   version: 4.0.11
   resolution: "vue-router@npm:4.0.11"
@@ -2231,6 +2257,32 @@ typescript@^4.4.3:
     "@vue/server-renderer": 3.2.19
     "@vue/shared": 3.2.19
   checksum: e85f1fd5c9f70c7cf290e6f1575dfb0aeed1bef75540ebb263f3db83a7aa5b980b7ac31afb2d645af7a0f06925b9538fa6278e756d861fcf364514318eb5886e
+  languageName: node
+  linkType: hard
+
+"vuex-typed-modules@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "vuex-typed-modules@npm:4.2.1"
+  dependencies:
+    typescript: ^4.3.5
+    vue-demi: ^0.10.1
+  peerDependencies:
+    "@nuxtjs/composition-api": ^0.23.4
+    "@vue/composition-api": ^1.0.0-rc.9
+    vue: ^2.0.0 || >=3.0.0-rc.0
+    vuex: ^3.0.0 || >=4.0.0
+  checksum: dfda224f0c12ada90db3cfb923b44d4b11995407418b879b7d56acb547d0fa31d0dc6e6ef45fd0b96f6ba0b4b8c1d5208c8d00c571fe7708703909a05527f57c
+  languageName: node
+  linkType: hard
+
+"vuex@npm:next":
+  version: 4.0.2
+  resolution: "vuex@npm:4.0.2"
+  dependencies:
+    "@vue/devtools-api": ^6.0.0-beta.11
+  peerDependencies:
+    vue: ^3.0.2
+  checksum: d7c03f0afcbad045ef58921a4baa9ec23bc12c71dbaf1317f1df94e7d8740ce839b9fac48ec775955ce7a8893dceb7217bc05e45421fc6bacc559ed3541e6052
   languageName: node
   linkType: hard
 

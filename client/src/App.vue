@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import "bulma/bulma.sass";
 import Navbar from "./components/Navbar.vue"
-import { films } from './data/films';
+import { useStore } from './store'
 
-document.addEventListener('DOMContentLoaded', async () => {
-  const f = await films();
-  console.log(f)
-})
+const store = useStore()
+
+function click() {
+  store.actions.addCountAsync(1)
+}
 </script>
 
 <template>
   <div class="container p-3">
     <Navbar class="mb-3" />
+    <p>{{ store.state.count }}</p>
+    <button @click="click">+</button>
     <router-view />
   </div>
 </template>
