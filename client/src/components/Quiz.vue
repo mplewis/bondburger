@@ -1,32 +1,16 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { pick, } from '../data/films'
-import { Film, Slug, FilmsBySlug } from '../types'
-import { random, randInt } from '../random'
-import Question from './Question.vue'
+import { pick } from '../logic/films'
+import { Question, buildQuestion } from '../logic/questions';// TODO: Quiz and Question need to be totally reworked and renamed
 
 const choices = 4
 const sentencePadding = 1;
 
-var options = ref<FilmsBySlug>({})
-var question = ref<string>("")
-var answer = ref<Slug>("")
-
-function buildQuestion(film: Film, padding: number): string {
-  const min = padding
-  const max = film.plot.length - 1 - padding
-  const base = randInt(min, max)
-  const q = film.plot.slice(base - padding, base + padding + 1)
-  return q.join(' ')
-}
+var question = ref<Question>(null)
 
 onMounted(async () => {
-  const ch = await pick(choices)
-  options.value = ch
-  const an = random(Object.keys(ch))
-  const anf = ch[an]
-  answer.value = an
-  question.value = buildQuestion(anf, sentencePadding)
+  const { q } = buildQuestion(pick(4))
+  options.
 })
 </script>
 

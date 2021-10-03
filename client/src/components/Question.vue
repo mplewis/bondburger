@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { FilmsBySlug } from '../data/films'
+import { FilmsBySlug } from '../types'
+impor
 
 defineProps<{
-  question: string;
+  question: Question;
   options: FilmsBySlug;
 }>()
 </script>

@@ -1,28 +1,27 @@
+import { filmsDataPath } from "../config";
 import { randInt } from "../random";
 import { Film, Slug, FilmsBySlug } from "../types";
 
-const filmsDataPath = "films.gz";
-
-type FilmWithSlug = { slug: Slug; film: Film };
-
 var _films: FilmsBySlug = {};
-var _filmsYearAsc: FilmWithSlug[] = [];
+var _filmsYearAsc: Film[] = [];
 
 export async function films(): Promise<FilmsBySlug> {
   if (Object.keys(_films).length === 0) {
     const resp = await fetch(filmsDataPath);
     const json = await resp.text();
-    _films = JSON.parse(json);
+    // structure is {slug: {year: 1984, title: ...}, ...}
+    const parsed: { [s: Slug]: Omit<Film, "slug"> } = JSON.parse(json);
+    for (const [slug, film] of Object.entries(parsed)) {
+      _films[slug] = { slug, ...film };
+    }
   }
-  const f = Object.entries(_films);
   return _films;
 }
 
-async function byYearAsc(): Promise<FilmWithSlug[]> {
+async function byYearAsc(): Promise<Film[]> {
   if (_filmsYearAsc.length === 0) {
-    const f = await films();
-    _filmsYearAsc = Object.entries(f).map(([slug, film]) => ({ slug, film }));
-    _filmsYearAsc.sort((a, b) => parseInt(a.film.year) - parseInt(b.film.year));
+    _filmsYearAsc = Object.values(await films());
+    _filmsYearAsc.sort((a, b) => parseInt(a.year) - parseInt(b.year));
   }
   return _filmsYearAsc;
 }
@@ -34,7 +33,7 @@ export async function pick(n: number): Promise<FilmsBySlug> {
   const fs = all.slice(i, i + n);
   const result: FilmsBySlug = {};
   for (const f of fs) {
-    result[f.slug] = f.film;
+    result[f.slug] = f;
   }
   return result;
 }
