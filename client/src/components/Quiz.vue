@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { pick, Film, Slug, FilmsBySlug } from '../data/films'
+import { pick, } from '../data/films'
+import { Film, Slug, FilmsBySlug } from '../types'
 import { random, randInt } from '../random'
 import Question from './Question.vue'
 
