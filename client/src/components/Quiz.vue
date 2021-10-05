@@ -1,19 +1,29 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { pick } from '../logic/films'
-import { Question, buildQuestion } from '../logic/questions';// TODO: Quiz and Question need to be totally reworked and renamed
+import { useStore } from '../store';
 
-const choices = 4
-const sentencePadding = 1;
-
-var question = ref<Question>(null)
-
-onMounted(async () => {
-  const { q } = buildQuestion(pick(4))
-  options.
-})
+const store = useStore();
 </script>
 
 <template>
-  <Question :question="question" :options="options" />
+  <p v-if="!store.getters.question">Loading...</p>
+  <div v-else>
+    <p class="question mb-3">{{ store.getters.question.text }}</p>
+    <button v-for="option in store.getters.question.options" class="button mb-3">
+      {{ option.title }}
+      ({{ option.year }}, {{ option.actor }})
+    </button>
+  </div>
 </template>
+
+<style scoped lang="scss">
+button {
+  display: block;
+  background-color: #e67e22;
+  color: white !important;
+  border: none;
+
+  &:hover {
+    background-color: #d35400;
+  }
+}
+</style>

@@ -27,13 +27,8 @@ async function byYearAsc(): Promise<Film[]> {
 }
 
 // Pick N films from the list, contiguous by year.
-export async function pick(n: number): Promise<FilmsBySlug> {
+export async function pick(n: number): Promise<Film[]> {
   const all = await byYearAsc();
   const i = randInt(0, all.length - n);
-  const fs = all.slice(i, i + n);
-  const result: FilmsBySlug = {};
-  for (const f of fs) {
-    result[f.slug] = f;
-  }
-  return result;
+  return all.slice(i, i + n);
 }

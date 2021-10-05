@@ -2,7 +2,7 @@ import { Film } from "../types";
 import { random, randInt } from "../random";
 import { contextPadding } from "../config";
 
-type Question = {
+export type Question = {
   text: string;
   options: Film[];
   answer: Film;
