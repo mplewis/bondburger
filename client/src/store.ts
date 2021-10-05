@@ -21,10 +21,10 @@ export const [store, useStore] = createVuexModule({
   name: "store",
   state: initialState,
   getters: {
-    question(state): Question | undefined {
+    qa(state): QuestionAnswer | undefined {
       if (state.qas.length === 0) return;
       const i = state.qas.length - 1;
-      return state.qas[i].question;
+      return state.qas[i];
     },
   },
   mutations: {

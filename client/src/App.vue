@@ -3,10 +3,8 @@ import "bulma/bulma.sass";
 import { onMounted } from "vue";
 import { store } from "./store";
 import Navbar from "./components/Navbar.vue"
-import { films } from "./logic/films";
 
 onMounted(() => {
-  films() // preload
   store.actions.newQuestion()
 })
 </script>
