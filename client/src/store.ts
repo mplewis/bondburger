@@ -26,6 +26,14 @@ export const [store, useStore] = createVuexModule({
       const i = state.qas.length - 1;
       return state.qas[i];
     },
+    score(state): { correct: number; total: number } {
+      const correct = state.qas.reduce(
+        (acc, qa) => (qa.answer === qa.question.answer.slug ? acc + 1 : acc),
+        0
+      );
+      const total = state.qas.length;
+      return { correct, total };
+    },
   },
   mutations: {
     setCurrentQuestion(state, question: Question) {
