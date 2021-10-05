@@ -10,12 +10,10 @@ export type QuestionAnswer = {
 };
 
 type State = {
-  count: number;
   qas: QuestionAnswer[];
 };
 
 const initialState: State = {
-  count: 1,
   qas: [],
 };
 
@@ -30,9 +28,6 @@ export const [store, useStore] = createVuexModule({
     },
   },
   mutations: {
-    addCount(state, number: number) {
-      state.count += number;
-    },
     setCurrentQuestion(state, question: Question) {
       state.qas.push({ question });
     },
@@ -42,9 +37,6 @@ export const [store, useStore] = createVuexModule({
     },
   },
   actions: {
-    async addCountAsync(_, count: number): Promise<void> {
-      store.mutations.addCount(count);
-    },
     async newQuestion(_) {
       const q = buildQuestion(await pick(choices));
       store.mutations.setCurrentQuestion(q);
