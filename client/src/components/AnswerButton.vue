@@ -28,52 +28,21 @@ const klass = computed(() => {
       {{ film.title }}
       ({{ film.year }}, {{ film.actor }})
     </button>
+    <span v-if="props.film.slug === actual">
+      <span v-if="klass === 'correct'" class="ml-3 annotation correct">✅ Correct!</span>
+      <span v-else-if="klass === 'incorrect'" class="ml-3 annotation incorrect">❌ Incorrect</span>
+    </span>
   </div>
 </template>
 
 <style scoped lang="scss">
-$button-color: #e67e22;
-$button-color-hover: lighten($button-color, 10%);
-$button-color-active: #d35400;
-
-$button-color-correct: #2ecc71;
-$button-color-incorrect: #e74c3c;
-
-button {
-  font-size: 1em;
+.annotation {
   font-weight: 700;
-
-  color: rgba(0, 0, 0, 0.8);
-  background: none;
-
-  padding: 0.75em;
-  margin-bottom: 0.75rem;
-
-  border: 3px solid rgba(0, 0, 0, 0.1);
-  border-radius: 6px;
-
-  &.option {
-    background-color: $button-color;
-    border-color: $button-color;
-    color: white;
-
-    &:hover {
-      background-color: $button-color-hover;
-      border-color: $button-color-hover;
-    }
-
-    &:active {
-      background-color: $button-color-active;
-      border-color: $button-color-active;
-    }
-  }
-
   &.correct {
-    border-color: $button-color-correct;
+    color: #27ae60;
   }
-
   &.incorrect {
-    border-color: $button-color-incorrect;
+    color: #c0392b;
   }
 }
 </style>

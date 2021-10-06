@@ -52,5 +52,9 @@ export const [store, useStore] = createVuexModule({
     submitAnswer(_, answer: Slug) {
       store.mutations.setCurrentAnswer(answer);
     },
+    clearScore(_) {
+      store.state.qas = store.state.qas.filter((qa) => !qa.answer);
+      if (store.state.qas.length === 0) store.actions.newQuestion();
+    },
   },
 });
