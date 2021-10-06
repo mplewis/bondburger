@@ -3,6 +3,7 @@ import { pick } from "./logic/films";
 import { buildQuestion, Question } from "./logic/questions";
 import { choices } from "./config";
 import { Slug } from "./types";
+import { isNoUnitNumericStyleProp } from "@vue/shared";
 
 export type QuestionAnswer = {
   question: Question;
@@ -27,11 +28,10 @@ export const [store, useStore] = createVuexModule({
       return state.qas[i];
     },
     score(state): { correct: number; total: number } {
-      const correct = state.qas.reduce(
-        (acc, qa) => (qa.answer === qa.question.answer.slug ? acc + 1 : acc),
-        0
-      );
-      const total = state.qas.length;
+      const correct = state.qas.reduce((acc, qa) => {
+        return qa.answer === qa.question.answer.slug ? acc + 1 : acc;
+      }, 0);
+      const total = state.qas.filter((qa) => qa.answer).length;
       return { correct, total };
     },
   },
