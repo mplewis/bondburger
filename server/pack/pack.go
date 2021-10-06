@@ -19,7 +19,7 @@ type FilmDump struct {
 	Films map[string]t.Film `json:"films"`
 }
 
-func load(dir string) (films []*t.Film, err error) {
+func Load(dir string) (films []*t.Film, err error) {
 	files, err := filepath.Glob(filepath.Join(dir, "*.txt"))
 	if err != nil {
 		return nil, err
@@ -103,7 +103,7 @@ func dump(fn string, films []*t.Film) error {
 }
 
 func Films(fromPlotDir string, toPlotArchive string) error {
-	films, err := load(fromPlotDir)
+	films, err := Load(fromPlotDir)
 	if err != nil {
 		return err
 	}
