@@ -3,7 +3,6 @@ import { pick } from "./logic/films";
 import { buildQuestion, Question } from "./logic/questions";
 import { choices } from "./config";
 import { Slug } from "./types";
-import { isNoUnitNumericStyleProp } from "@vue/shared";
 
 export type QuestionAnswer = {
   question: Question;
